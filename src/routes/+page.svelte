@@ -1,7 +1,6 @@
 <script lang="ts">
 	import hackClubFlag from '$lib/assets/hack-club-flag.svg';
 	import homelabLogo from '$lib/assets/homelab-logo.svg';
-	import faqsIcon from '$lib/assets/faqs-icon.svg';
 	import gridPattern from '$lib/assets/grid-pattern.png';
 
 	const faqItems = [
@@ -37,7 +36,7 @@
 	const tabs = [
 		{ id: 'faqs', label: 'FAQs', disabled: false },
 		{ id: 'rewards', label: 'Rewards (TBD)', disabled: true },
-		{ id: 'ship', label: 'Ship (Unavailable)', disabled: true }
+		{ id: 'ship', label: 'Ship', link: 'https://submit.hackclub.com/homelab' }
 	];
 
 	let activeTab = $state('faqs');
@@ -68,7 +67,13 @@
 			<nav class="flex items-center gap-6">
 				{#each tabs as tab}
 					<button
-						onclick={() => !tab.disabled && (activeTab = tab.id)}
+						onclick={() => {
+							if (tab.link) {
+								window.location.href = tab.link;
+							} else if (!tab.disabled) {
+								activeTab = tab.id;
+							}
+						}}
 						class="font-mono text-base font-semibold cursor-pointer {activeTab === tab.id
 							? 'bg-white px-2 py-0.5 text-black'
 							: tab.disabled
