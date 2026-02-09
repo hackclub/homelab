@@ -36,7 +36,7 @@
 	const tabs = [
 		{ id: 'faqs', label: 'FAQs', disabled: false },
 		{ id: 'rewards', label: 'Rewards (TBD)', disabled: true },
-		{ id: 'ship', label: 'Ship', link: 'https://submit.hackclub.com/homelab' }
+		{ id: 'ship', label: 'Ship', link: 'https://submit.hackclub.com/homelab', color:'#6eadff' }
 	];
 
 	let activeTab = $state('faqs');
@@ -79,6 +79,7 @@
 							: tab.disabled
 								? 'text-[#8B8B8B] underline'
 								: 'text-white underline'}"
+						style={tab.color ? `color: ${tab.color}` : ''}
 						disabled={tab.disabled}
 					>
 						{tab.label}
